@@ -1,26 +1,36 @@
 package br.com.letscode.spring.locadoraletscode.filme;
 
 import lombok.*;
-
 import javax.persistence.*;
+import javax.validation.constraints.NotBlank;
 
-@AllArgsConstructor
-@NoArgsConstructor
+
 @Getter
 @Setter
 @ToString
+@AllArgsConstructor
+@NoArgsConstructor
 @Entity
+@Table(name="Filmes")
+
 public class Filme {
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private int id;
+    private Integer codigoFilme;
 
-    @Column(nullable=false)
+    @NotBlank(message = "Titulo não informado")
     private String titulo;
 
-    @OneToOne
-    @JoinColumn(name = "locacao-id")
-    private Locacao locacao;
+    @NotBlank(message = "Sinopse não informado")
+    private String sinopse;
+
+    @NotBlank(message = "Valor não informado")
+    private double valorDaLocacao;
+
+    @NotBlank(message = "Genero não informado")
+    private String genero;
+
 
 
 }

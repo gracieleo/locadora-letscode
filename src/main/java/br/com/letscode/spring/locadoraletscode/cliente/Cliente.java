@@ -1,8 +1,12 @@
 package br.com.letscode.spring.locadoraletscode.cliente;
 
 import lombok.*;
-
+import org.hibernate.validator.constraints.br.CPF;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.Min;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.Pattern;
 
 @Getter
 @Setter
@@ -17,11 +21,17 @@ public class Cliente  {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(nullable = false)
+    @NotBlank(message = "Nome não informado")
+    @Pattern(regexp = "[a-zA-Z]+(.)*",message = "Primeira letra do nome deve ser maiúscula")
     private String nome;
-    @Column(nullable = false)
+
+    @Email(message = "E-mail inválido")
+    @NotBlank(message = "E-mail não informado")
     private String email;
-    @Column(nullable = false)
+
+    @CPF(message = "Número CPF inválido")
+    @NotBlank(message = "CPF não informado")
     private String cpf;
+
 
 }

@@ -1,20 +1,26 @@
 package br.com.letscode.spring.locadoraletscode.cliente;
 
 
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.FieldError;
+import org.springframework.web.bind.MethodArgumentNotValidException;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Optional;
 
 
 @RestController
-@RequestMapping("/clientes")    //http://localhost:8080/clientes
-public class ClienteController {
+@RequestMapping("/clientes")
+public class ClienteRestController {
 
     private ClienteRepository repository;
 
-    public ClienteController(ClienteRepository clienteRepository){
+    public ClienteRestController(ClienteRepository clienteRepository){
         this.repository = clienteRepository;
 
     }
@@ -31,22 +37,17 @@ public class ClienteController {
         return repository.findById(id);
     }
 
-    //atualização de um dado
-    @PostMapping
-    public Cliente atualizaCliente(@RequestBody Cliente cliente) {
+    //cadastrar
+    @PostMapping("/salvar")
+    public Cliente cadastraCliente(@RequestBody @Valid Cliente cliente) {
         return repository.save(cliente);
     }
 
-    //inserir um dado
-    @PutMapping
-    public Cliente cadastraCliente(@RequestBody Cliente cliente) {
-        return repository.save(cliente);
-    }
 
 
     //inserir um dado em cadastro já existente
     @PutMapping("/{id}")
-    public Cliente cadastraClientePorId(@RequestBody Cliente cliente, @PathVariable(value="id") long id) {
+    public Cliente cadastraDadoCliente(@RequestBody Cliente cliente, @PathVariable(value="id") long id) {
         cliente.setId(id);
         return repository.save(cliente);
     }
@@ -61,6 +62,20 @@ public class ClienteController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+    //mensagem erro
+    @ResponseStatus(HttpStatus.BAD_REQUEST)
+    @ExceptionHandler(MethodArgumentNotValidException.class)
+    public Map<String,String> handleValidationException(MethodArgumentNotValidException ex){
+        Map<String,String> errors = new HashMap<>();
+
+        ex.getBindingResult().getAllErrors().forEach((error)->{
+            String fieldName = ((FieldError) error).getField();
+            String errorMessage = error.getDefaultMessage();
+            errors.put(fieldName,errorMessage);
+        });
+
+        return errors;
+    }
 }
 
 

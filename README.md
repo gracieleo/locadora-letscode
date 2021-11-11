@@ -86,3 +86,8 @@ Requisições DELETE:
 
 ```
 
+### 💡 Dica 
+Iniciar aplicação com uma base de dados
+- Pasta resources
+- data-h2.sql
+

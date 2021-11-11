@@ -1,7 +1,9 @@
 package br.com.letscode.spring.locadoraletscode.cliente;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -19,7 +21,9 @@ import java.util.Optional;
 @RequestMapping("/clientes")
 public class ClienteRestController {
 
+
     @Autowired
+
     private ClienteRepository repository;
 
     public ClienteRestController(ClienteRepository clienteRepository){
@@ -28,11 +32,17 @@ public class ClienteRestController {
     }
 
 
+
+    //listar todos
+
     @GetMapping
     public List<Cliente> listaClientes(){
         return repository.findAll();
     }
 
+
+
+    //listar por Id
 
     @GetMapping("/{id}")
     public Optional<Cliente> listaClientePorId (@PathVariable(value="id") long id){
@@ -40,17 +50,25 @@ public class ClienteRestController {
     }
 
 
+
+
+    //cadastrar
+
     @PostMapping("/salvar")
     public Cliente cadastraCliente(@RequestBody @Valid Cliente cliente) {
         return repository.save(cliente);
-    }
+    
 
+    //inserir um dado em cadastro já existente
 
     @PutMapping("/{id}")
     public Cliente cadastraDadoCliente(@RequestBody Cliente cliente, @PathVariable(value="id") long id) {
         cliente.setId(id);
         return repository.save(cliente);
     }
+
+
+    //deletar cadastro
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletaClientePorId(@PathVariable(value="id") long id) {
@@ -60,6 +78,9 @@ public class ClienteRestController {
                     return ResponseEntity.ok().build();
                 }).orElse(ResponseEntity.notFound().build());
     }
+
+
+    //mensagem erro
 
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)

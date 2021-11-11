@@ -25,31 +25,30 @@ public class FilmeRestController {
     }
 
 
-    //listar todos
     @GetMapping
     public List<Filme> listaFilmes(){
         return repository.findAll();
     }
 
-    //listar por codigoFilme
+
     @GetMapping("/{codigoFilme}")
     public Optional<Filme> listaFilmePorId (@PathVariable(value="codigoFilme") Integer codigoFilme){
         return repository.findById(codigoFilme);
     }
 
-    //listar por genero
-    @GetMapping("/{genero}")
+
+    @GetMapping("/{categoria}")
     public List<Filme> listaFilmePorGenero (){
         return repository.findAll();
     }
 
-    //cadastrar
+
     @PostMapping
     public Filme inserirFilme(@RequestBody @Valid Filme filme) {
         return repository.save(filme);
     }
 
-    //mensagem erro
+
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String,String> handleValidationException(MethodArgumentNotValidException ex){

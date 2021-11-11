@@ -3,6 +3,7 @@ package br.com.letscode.spring.locadoraletscode.filme;
 import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotBlank;
+import java.io.Serializable;
 
 
 @Getter
@@ -11,13 +12,15 @@ import javax.validation.constraints.NotBlank;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name="Filmes")
+@Table(name="Filme")
 
-public class Filme {
+public class Filme implements Serializable {
+
+    private static final long serialVersionUID = 1L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Integer codigoFilme;
+    private int codigoFilme;
 
     @NotBlank(message = "Titulo não informado")
     private String titulo;
@@ -25,12 +28,14 @@ public class Filme {
     @NotBlank(message = "Sinopse não informado")
     private String sinopse;
 
-    @NotBlank(message = "Valor não informado")
-    private double valorDaLocacao;
 
-    @NotBlank(message = "Genero não informado")
-    private String genero;
+    private double valor;
 
+    @OneToOne
+    @JoinColumn(name="codigoCategoria")
+    private Categoria categoria;
 
 
 }
+
+

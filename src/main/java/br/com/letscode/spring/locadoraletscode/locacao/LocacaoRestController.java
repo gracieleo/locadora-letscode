@@ -35,7 +35,7 @@ public class LocacaoRestController {
 
 
     @ResponseStatus(HttpStatus.CREATED)
-    @PostMapping
+    @PostMapping("/salvar")
     public Locacao salvarLocacao(@Valid @RequestBody Locacao locacao) {
         return repository.save(locacao);
     }

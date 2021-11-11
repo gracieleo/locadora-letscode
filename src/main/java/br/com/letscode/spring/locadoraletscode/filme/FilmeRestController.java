@@ -31,6 +31,7 @@ public class FilmeRestController {
     }
 
 
+
     @GetMapping("/{codigoFilme}")
     public Optional<Filme> listaFilmePorId (@PathVariable(value="codigoFilme") Integer codigoFilme){
         return repository.findById(codigoFilme);
@@ -43,7 +44,7 @@ public class FilmeRestController {
     }
 
 
-    @PostMapping("/salvar")
+    @PostMapping
     public Filme inserirFilme(@RequestBody @Valid Filme filme) {
         return repository.save(filme);
     }

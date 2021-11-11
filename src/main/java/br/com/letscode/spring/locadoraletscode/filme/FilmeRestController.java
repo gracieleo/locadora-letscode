@@ -43,7 +43,7 @@ public class FilmeRestController {
     }
 
 
-    @PostMapping
+    @PostMapping("/salvar")
     public Filme inserirFilme(@RequestBody @Valid Filme filme) {
         return repository.save(filme);
     }

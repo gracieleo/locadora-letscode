@@ -88,8 +88,8 @@ Requisições DELETE:
 
 ### 💡 Dica 
 Iniciar aplicação com uma base de dados
-- Pasta resources
-- data-h2.sql
+- Pasta resources -> data-h2.sql
+- No application-properties adicionar -> spring.jpa.defer-datasource-initialization =true
 
 
 ![foto](https://user-images.githubusercontent.com/53338148/141364803-44063a5d-a81a-4f75-9e2f-f102c2137678.JPG)

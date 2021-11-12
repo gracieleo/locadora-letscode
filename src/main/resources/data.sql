@@ -15,5 +15,8 @@ INSERT INTO filme (sinopse,titulo,valor,categoria_descricao) VALUES ('Durante a 
 INSERT INTO filme (sinopse,titulo,valor,categoria_descricao) VALUES ('Após roubar 40 mil dólares para se casar com o namorado, uma mulher foge durante uma tempestade e decide passar a noite em um hotel que encontra pelo caminho.','Psicose',5.00,4);
 
 
-INSERT INTO locacao (inicio,cliente_id,codigo_filme) VALUES ('13112021',1,1);
+INSERT INTO locacao (data_Inicio_Locacao,data_Fim_Locacao,cliente_id,codigo_filme) VALUES ('12/11/2021','14/11/2021',1,1);
+INSERT INTO locacao (data_Inicio_Locacao,data_Fim_Locacao,cliente_id,codigo_filme) VALUES ('13/11/2021','15/11/2021',2,2);
+INSERT INTO locacao (data_Inicio_Locacao,data_Fim_Locacao,cliente_id,codigo_filme) VALUES ('14/11/2021','16/11/2021',3,3);
+INSERT INTO locacao (data_Inicio_Locacao,data_Fim_Locacao,cliente_id,codigo_filme) VALUES ('15/11/2021','17/11/2021',4,4);
 

@@ -8,6 +8,7 @@ import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Pattern;
 
+
 @Getter
 @Setter
 @ToString
@@ -15,7 +16,8 @@ import javax.validation.constraints.Pattern;
 @NoArgsConstructor
 @Entity
 @Table(name="Cliente")
-public class Cliente  {
+public class    Cliente  {
+
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

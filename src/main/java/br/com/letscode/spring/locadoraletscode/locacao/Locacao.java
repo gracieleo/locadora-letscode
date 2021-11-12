@@ -27,7 +27,8 @@ public class Locacao implements Serializable {
     private int codigoLocacao;
 
 
-    private final SimpleDateFormat inicio = new SimpleDateFormat("dd/MM/yyyy");
+    private String dataInicioLocacao ;
+    private String dataFimLocacao ;
 
     @OneToOne
     @JoinColumn(name="codigoFilme")

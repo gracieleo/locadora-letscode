@@ -6,7 +6,8 @@ import lombok.*;
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.Date;
+import java.text.SimpleDateFormat;
+
 
 
 @Getter
@@ -25,9 +26,8 @@ public class Locacao implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigoLocacao;
 
-    private Date dataInicioLocacao;
-    private Date dataFimLocacao;
 
+    private final SimpleDateFormat inicio = new SimpleDateFormat("dd/MM/yyyy");
 
     @OneToOne
     @JoinColumn(name="codigoFilme")

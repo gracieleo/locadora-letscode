@@ -6,7 +6,6 @@ import javax.validation.constraints.NotBlank;
 import java.io.Serializable;
 
 
-
 @Getter
 @Setter
 @ToString
@@ -15,8 +14,6 @@ import java.io.Serializable;
 @Entity
 @Table(name="Filme")
 
-
-
 public class Filme implements Serializable {
 
     private static final long serialVersionUID = 1L;
@@ -24,7 +21,6 @@ public class Filme implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int codigoFilme;
-
 
     @NotBlank(message = "Titulo não informado")
     private String titulo;
@@ -36,11 +32,10 @@ public class Filme implements Serializable {
     private double valor;
 
     @OneToOne
-    @JoinColumn(name="codigoCategoria")
+   @JoinColumn(name="categoria_descricao")
     private Categoria categoria;
 
+
 }
-
-
 
 

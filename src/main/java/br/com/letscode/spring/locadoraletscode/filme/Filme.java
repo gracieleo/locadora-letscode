@@ -32,7 +32,7 @@ public class Filme implements Serializable {
     private double valor;
 
     @OneToOne
-   @JoinColumn(name="codigoCategoria")
+   @JoinColumn(name="categoria_descricao")
     private Categoria categoria;
 
 

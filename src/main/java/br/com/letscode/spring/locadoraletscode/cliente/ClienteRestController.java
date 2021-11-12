@@ -1,7 +1,10 @@
 package br.com.letscode.spring.locadoraletscode.cliente;
 
 
+
 import org.springframework.beans.factory.annotation.Autowired;
+
+
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.validation.FieldError;
@@ -19,7 +22,9 @@ import java.util.Optional;
 @RequestMapping("/clientes")
 public class ClienteRestController {
 
+
     @Autowired
+
     private ClienteRepository repository;
 
     public ClienteRestController(ClienteRepository clienteRepository){
@@ -34,10 +39,12 @@ public class ClienteRestController {
     }
 
 
+
     @GetMapping("/{id}")
     public Optional<Cliente> listaClientePorId (@PathVariable(value="id") long id){
         return repository.findById(id);
     }
+
 
 
     @PostMapping("/salvar")
@@ -46,11 +53,13 @@ public class ClienteRestController {
     }
 
 
+
     @PutMapping("/{id}")
     public Cliente cadastraDadoCliente(@RequestBody Cliente cliente, @PathVariable(value="id") long id) {
         cliente.setId(id);
         return repository.save(cliente);
     }
+
 
     @DeleteMapping("/{id}")
     public ResponseEntity<Object> deletaClientePorId(@PathVariable(value="id") long id) {
@@ -61,6 +70,7 @@ public class ClienteRestController {
                 }).orElse(ResponseEntity.notFound().build());
     }
 
+      
     @ResponseStatus(HttpStatus.BAD_REQUEST)
     @ExceptionHandler(MethodArgumentNotValidException.class)
     public Map<String,String> handleValidationException(MethodArgumentNotValidException ex){

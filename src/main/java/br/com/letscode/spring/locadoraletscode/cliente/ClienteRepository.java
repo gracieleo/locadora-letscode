@@ -1,3 +1,4 @@
+
 package br.com.letscode.spring.locadoraletscode.cliente;
 
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -8,3 +9,4 @@ import org.springframework.stereotype.Repository;
 
 public interface ClienteRepository extends JpaRepository<Cliente,Long> {
 }
+
